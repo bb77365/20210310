@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+Student Name:<input type="text" id="sname" value="Mary"/><br/>
+Student Age:<input type="text" id="age" value="25"/><br/>
+<button onclick="add()">client add</button>
+<button onclick="send()">Send to Server</button>
+<div id="msg">Message Here</div>
+<script>
+   var stuObj=[];
+   function add(){
+	   var name=$("#sname").val();
+	   var age=$("#age").val();
+	   var obj=new Object();
+	   obj.name=name;
+	   obj.age=age;
+	   stuObj.push(obj);
+	   alert(JSON.stringify(stuObj));
+   }
+   function send(){
+	 
+	  var jstr=JSON.stringify(stuObj);
+	  $.post("JsonAddManyServlet",{"data":jstr},result)     
+   }
+   
+   function result(data){	 
+	 $("#msg").html(data);
+   }
+   
+</script>
+</body>
+</html>

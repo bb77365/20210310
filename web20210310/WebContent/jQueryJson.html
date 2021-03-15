@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Get Server JSON</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<button>Server Student JSON</button>
+<div id="msg">Message</div>
+<script>
+   function start(){
+	  $("button").click(getServerJSON); 
+   }
+   function getServerJSON(){
+      $.get("GsonServlet",result);
+   }
+   function result(data){
+	 var obj= JSON.parse(data);
+	 var st="<h1>Name:"+obj.name+"</h1>";
+	 st+="<h1>Age:"+obj.age+"</h1>"
+	 $("#msg").html(st);
+	 
+   }
+   $(document).ready(start);
+</script>
+</body>
+</html>
